@@ -294,6 +294,16 @@
             </div>
         </section>
 
+        <dialog class="order-thank-you-dialog" id="order-thank-you" aria-labelledby="order-thank-you-title" aria-describedby="order-thank-you-message">
+            <p class="eyebrow">Pickup order</p>
+            <h2 id="order-thank-you-title">Thank You!</h2>
+            <p id="order-thank-you-message">Your order details are ready. Choose “Open email draft,” then send it to place your request. The cafe will confirm availability by email; payment is due at pickup.</p>
+            <div class="order-thank-you-actions">
+                <button class="button button-secondary" id="close-order-thank-you" type="button">Close</button>
+                <button class="button button-primary" id="open-order-email" type="button">Open email draft</button>
+            </div>
+        </dialog>
+
         <section id="community" class="cafe-section community-section">
             <div class="container">
                 <div class="section-heading">
@@ -331,10 +341,7 @@
                 </div>
                 <div class="owner-gallery" aria-label="Photos of Cora and Alexa">
                     <figure class="owner-photo-card">
-                        <video class="owner-live-photo" autoplay muted loop playsinline controls aria-label="Cora in a looping Live Photo">
-                            <source src="assets/video/cora-live.mp4" type="video/mp4">
-                            Your browser does not support embedded video.
-                        </video>
+                        <img class="owner-live-photo" src="assets/img/owner/cora-portrait.png" alt="Cora smiling in a close-up portrait">
                         <figcaption>Cora</figcaption>
                     </figure>
                     <figure class="owner-photo-card">
@@ -489,6 +496,9 @@
         const orderCart = document.getElementById('order-cart');
         const orderStatus = document.getElementById('order-status');
         const orderSubtotal = document.getElementById('order-subtotal');
+        const orderThankYouDialog = document.getElementById('order-thank-you');
+        const openOrderEmail = document.getElementById('open-order-email');
+        let orderEmailDraftUrl = '';
         const teaPriceCents = 1400;
         const orderItems = new Map();
         const formatPrice = cents => new Intl.NumberFormat('en-US', {
@@ -569,7 +579,17 @@
                 `Name: ${customerName}\nPhone: ${customerPhone}\n\nOrder:\n${itemLines.join('\n')}` +
                 `\n\nSubtotal: ${formatPrice(subtotalCents)}\nPayment: At pickup`
             );
-            window.location.href = `mailto:hello@impact508nutrition.com?subject=${subject}&body=${body}`;
+            orderEmailDraftUrl = `mailto:hello@impact508nutrition.com?subject=${subject}&body=${body}`;
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+            orderThankYouDialog.showModal();
+        });
+
+        document.getElementById('close-order-thank-you').addEventListener('click', () => {
+            orderThankYouDialog.close();
+        });
+        openOrderEmail.addEventListener('click', () => {
+            orderThankYouDialog.close();
+            window.location.href = orderEmailDraftUrl;
         });
 
         const toggle = document.querySelector('.nav-toggle');
