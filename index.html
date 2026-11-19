@@ -28,6 +28,7 @@
                 <a href="#community">Community Moments</a>
                 <a href="#mascot">Meet Cora</a>
                 <a href="#owner">Meet Alexa & Cora</a>
+                <a href="#order-online">Order Online</a>
                 <a class="nav-visit" href="#visit">Visit Us</a>
             </nav>
         </div>
@@ -198,6 +199,95 @@
             </div>
         </section>
 
+        <section id="order-online" class="order-section" aria-labelledby="order-title">
+            <div class="container order-container">
+                <div class="section-heading">
+                    <p class="eyebrow">One size, $14.00 each</p>
+                    <h2 id="order-title">Order tea for pickup</h2>
+                    <p>Choose from our all-year, seasonal, and rotating tea and refresher options. Add your picks to the order and email us your request.</p>
+                </div>
+                <form class="order-form" id="online-order-form">
+                    <div class="order-layout">
+                        <div class="order-picker">
+                            <label for="order-drink">Choose a drink</label>
+                            <select id="order-drink" name="drink" required>
+                                <option value="" selected disabled>Select a tea or refresher</option>
+                                <optgroup label="All-Year Power Teas">
+                                    <option>Fruit Gummy</option>
+                                    <option>Electric Lemonade</option>
+                                    <option>Watermelon-Rita</option>
+                                    <option>Lavender Lemonade</option>
+                                    <option>Sour Watermelon</option>
+                                    <option>Georgia Peach</option>
+                                    <option>Pineapple Express</option>
+                                    <option>Pomegranate Rush</option>
+                                    <option>Cherry Limeade</option>
+                                    <option>Cool Cucumber</option>
+                                    <option>Fruit Roll Up</option>
+                                    <option>Mermaid Water</option>
+                                    <option>The 508</option>
+                                    <option>Shark Bite</option>
+                                    <option>Miami Vice</option>
+                                    <option>Hot Tamale</option>
+                                    <option>Captain America</option>
+                                    <option>Rainbow Drop</option>
+                                    <option>CR7 Crush</option>
+                                    <option>Heat Wave</option>
+                                    <option>Bad N Bougie</option>
+                                    <option>Magical Cloud</option>
+                                </optgroup>
+                                <optgroup label="Seasonal - Fall">
+                                    <option>Maple Pear</option>
+                                    <option>Pumpkin Spice</option>
+                                    <option>Spiced Apple</option>
+                                </optgroup>
+                                <optgroup label="Seasonal - Winter">
+                                    <option>Peppermint Mocha</option>
+                                    <option>Cocoa Orange</option>
+                                    <option>Warming Chai</option>
+                                </optgroup>
+                                <optgroup label="Seasonal - Spring">
+                                    <option>Strawberry Basil</option>
+                                    <option>Lavender Lemon</option>
+                                    <option>Bright Matcha</option>
+                                </optgroup>
+                                <optgroup label="Seasonal - Summer">
+                                    <option>Peach Green Tea</option>
+                                    <option>Berry Cooler</option>
+                                    <option>Citrus Breeze</option>
+                                </optgroup>
+                                <optgroup label="Rotating Drinks">
+                                    <option>Neighborhood Nectar</option>
+                                    <option>Take-the-Dog-Walk</option>
+                                </optgroup>
+                            </select>
+                            <label for="order-quantity">Quantity</label>
+                            <input id="order-quantity" name="quantity" type="number" min="1" step="1" value="1" required>
+                            <button class="button button-primary order-add-button" id="add-order-item" type="button">Add to order</button>
+                        </div>
+                        <div class="order-summary">
+                            <h3>Your order</h3>
+                            <ul class="order-cart" id="order-cart" aria-label="Drinks in your order"></ul>
+                            <p class="order-status" id="order-status" aria-live="polite">Your order is empty.</p>
+                            <p class="order-subtotal"><strong>Subtotal</strong><output id="order-subtotal">$0.00</output></p>
+                        </div>
+                    </div>
+                    <div class="order-customer">
+                        <div class="order-field">
+                            <label for="order-customer-name">Your name</label>
+                            <input id="order-customer-name" name="customer-name" type="text" maxlength="120" autocomplete="name" required>
+                        </div>
+                        <div class="order-field">
+                            <label for="order-customer-phone">Phone number</label>
+                            <input id="order-customer-phone" name="customer-phone" type="tel" maxlength="40" autocomplete="tel" required>
+                        </div>
+                    </div>
+                    <p class="order-note">Submitting opens an email draft; you must send it to place your request. The cafe will confirm availability by email. No online payment is taken; pay at pickup.</p>
+                    <button class="button button-primary order-submit" type="submit">Email pickup order</button>
+                </form>
+            </div>
+        </section>
+
         <section id="community" class="cafe-section community-section">
             <div class="container">
                 <div class="section-heading">
@@ -357,7 +447,7 @@
                 <p>Healthy choices. Community spirit. A place for every pup.</p>
             </div>
             <nav aria-label="Footer navigation">
-                <a href="#power-teas">All-Year Menu</a><a href="#seasonal">Seasonal Drinks</a><a href="#favorites">Favorites</a><a href="#community">Community Moments</a><a href="#mascot">Meet Cora</a><a href="#owner">Meet Alexa & Cora</a><a href="#story">About</a>
+                <a href="#power-teas">All-Year Menu</a><a href="#seasonal">Seasonal Drinks</a><a href="#favorites">Favorites</a><a href="#order-online">Order Online</a><a href="#community">Community Moments</a><a href="#mascot">Meet Cora</a><a href="#owner">Meet Alexa & Cora</a><a href="#story">About</a>
             </nav>
             <nav class="footer-social" aria-label="Social media">
                 <strong>Follow us</strong>
@@ -390,6 +480,95 @@
             const subject = encodeURIComponent('Impact 508 website feedback');
             const body = encodeURIComponent(
                 `Favorite drink: ${favoriteDrink}\n\nVisit experience: ${visitExperience}`
+            );
+            window.location.href = `mailto:hello@impact508nutrition.com?subject=${subject}&body=${body}`;
+        });
+
+        const orderForm = document.getElementById('online-order-form');
+        const orderDrink = document.getElementById('order-drink');
+        const orderQuantity = document.getElementById('order-quantity');
+        const orderCart = document.getElementById('order-cart');
+        const orderStatus = document.getElementById('order-status');
+        const orderSubtotal = document.getElementById('order-subtotal');
+        const teaPriceCents = 1400;
+        const orderItems = new Map();
+        const formatPrice = cents => new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(cents / 100);
+
+        function renderOrderCart() {
+            orderCart.replaceChildren();
+            let totalQuantity = 0;
+            let subtotalCents = 0;
+
+            orderItems.forEach((quantity, drink) => {
+                totalQuantity += quantity;
+                subtotalCents += quantity * teaPriceCents;
+
+                const item = document.createElement('li');
+                item.className = 'order-cart-item';
+                const description = document.createElement('span');
+                description.textContent = `${drink} - ${quantity} x ${formatPrice(teaPriceCents)}`;
+                const removeButton = document.createElement('button');
+                removeButton.className = 'order-remove-button';
+                removeButton.type = 'button';
+                removeButton.textContent = 'Remove';
+                removeButton.setAttribute('aria-label', `Remove ${drink} from your order`);
+                removeButton.addEventListener('click', () => {
+                    orderItems.delete(drink);
+                    renderOrderCart();
+                });
+                item.append(description, removeButton);
+                orderCart.append(item);
+            });
+
+            orderSubtotal.textContent = formatPrice(subtotalCents);
+            orderStatus.textContent = totalQuantity
+                ? `${totalQuantity} drink${totalQuantity === 1 ? '' : 's'} in your order.`
+                : 'Your order is empty.';
+        }
+
+        document.getElementById('add-order-item').addEventListener('click', () => {
+            const drink = orderDrink.value;
+            const quantity = Number(orderQuantity.value);
+            const currentQuantity = orderItems.get(drink) || 0;
+            const nextQuantity = currentQuantity + quantity;
+
+            if (!drink || !Number.isSafeInteger(quantity) || quantity < 1 ||
+                !Number.isSafeInteger(nextQuantity) ||
+                nextQuantity > Math.floor(Number.MAX_SAFE_INTEGER / teaPriceCents)) {
+                orderStatus.textContent = 'Choose a drink and enter a valid quantity before adding it.';
+                if (!drink) orderDrink.focus();
+                else orderQuantity.focus();
+                return;
+            }
+
+            orderItems.set(drink, nextQuantity);
+            renderOrderCart();
+        });
+
+        orderForm.addEventListener('submit', event => {
+            event.preventDefault();
+            if (orderItems.size === 0) {
+                orderStatus.textContent = 'Add at least one drink before emailing your order.';
+                orderDrink.focus();
+                return;
+            }
+
+            const customerName = orderForm.elements['customer-name'].value.trim();
+            const customerPhone = orderForm.elements['customer-phone'].value.trim();
+            const itemLines = [...orderItems].map(([drink, quantity]) =>
+                `${quantity} x ${drink} - ${formatPrice(quantity * teaPriceCents)}`
+            );
+            const subtotalCents = [...orderItems.values()].reduce(
+                (total, quantity) => total + quantity * teaPriceCents,
+                0
+            );
+            const subject = encodeURIComponent('Impact 508 tea pickup order request');
+            const body = encodeURIComponent(
+                `Name: ${customerName}\nPhone: ${customerPhone}\n\nOrder:\n${itemLines.join('\n')}` +
+                `\n\nSubtotal: ${formatPrice(subtotalCents)}\nPayment: At pickup`
             );
             window.location.href = `mailto:hello@impact508nutrition.com?subject=${subject}&body=${body}`;
         });
