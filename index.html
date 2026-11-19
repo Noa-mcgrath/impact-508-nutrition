@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Impact 508 Nutrition | Healthy Cafe</title>
     <meta name="description" content="A cozy, healthy, dog-friendly cafe with an all-year menu, seasonal drinks, and rotating community favorites.">
+    <script>
+        const navigationEntry = performance.getEntriesByType('navigation')[0];
+        if (navigationEntry?.type === 'reload') {
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            window.addEventListener('pageshow', () => {
+                if (!window.location.hash) window.scrollTo(0, 0);
+            }, { once: true });
+        }
+    </script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
@@ -148,15 +157,12 @@
                 </div>
                 <div class="menu-grid">
                     <article class="menu-card">
-                        <img src="assets/img/product/product-1.jpg" alt="Herbal tea and fresh ingredients">
                         <div><p class="menu-type">Signature</p><h3>Impact 508 Green Tea</h3><p>Fresh green tea, lemon, ginger, and a naturally bright finish.</p></div>
                     </article>
                     <article class="menu-card">
-                        <img src="assets/img/product/product-3.jpg" alt="A cup of warming tea">
                         <div><p class="menu-type">Daily wellness</p><h3>Honey Oat Latte</h3><p>Smooth espresso, oat milk, local honey, and cinnamon.</p></div>
                     </article>
                     <article class="menu-card">
-                        <img src="assets/img/product/product-5.jpg" alt="Freshly prepared tea drink">
                         <div><p class="menu-type">Fresh favorite</p><h3>Berry Balance</h3><p>Mixed berries, protein-rich blend, banana, and oat milk.</p></div>
                     </article>
                 </div>
@@ -166,7 +172,7 @@
         <section id="seasonal" class="cafe-section seasonal-section">
             <div class="container seasonal-layout">
                 <div class="seasonal-image">
-                    <img src="assets/img/slider/slider-1-1.jpg" alt="A seasonal cafe drink in a warm setting">
+                    <img src="assets/img/community/cafe-moment.jpeg" alt="Cafe guests sharing colorful drinks">
                     <span class="season-label">This season</span>
                 </div>
                 <div class="seasonal-copy">
@@ -320,17 +326,10 @@
                     <h2>Meet Alexa & Cora</h2>
                 </div>
                 <div class="owner-story">
-                    <p>Add a paragraph introducing Alexa and sharing what inspired her to create Impact 508.</p>
-                    <p>Add another paragraph about Cora and what makes them love welcoming the community to the cafe.</p>
+                    <p>Alexa welcomes neighbors to enjoy nourishing choices in a cozy, community-minded cafe.</p>
+                    <p>Cora is Impact 508's lovable mascot and greets visitors with a warm, friendly welcome.</p>
                 </div>
-                <div class="owner-gallery" aria-label="Photo spaces for Alexa and Cora">
-                    <figure class="owner-photo-card">
-                        <div class="owner-photo-placeholder" role="img" aria-label="Add a photo of Alexa">
-                            <span class="camera-icon" aria-hidden="true"></span>
-                            <span>Add Alexa's photo</span>
-                        </div>
-                        <figcaption>Alexa</figcaption>
-                    </figure>
+                <div class="owner-gallery" aria-label="Photos of Cora and Alexa">
                     <figure class="owner-photo-card">
                         <video class="owner-live-photo" autoplay muted loop playsinline controls aria-label="Cora in a looping Live Photo">
                             <source src="assets/video/cora-live.mp4" type="video/mp4">
@@ -398,8 +397,8 @@
                     <a class="button button-primary" href="#visit">Meet us here</a>
                 </div>
                 <div class="story-images" aria-label="Cozy cafe and community space">
-                    <img src="assets/img/banner/about-us.jpg" alt="A welcoming cafe interior">
-                    <img src="assets/img/blog/blog-author.png" alt="A friendly cafe community member">
+                    <img src="assets/img/community/neighbors-friends.jpeg" alt="Cafe neighbors sharing a holiday moment">
+                    <img src="assets/img/cora/cora-cafe-replacement.jpg" alt="Cora and a guest enjoying drinks at the cafe">
                 </div>
             </div>
         </section>
