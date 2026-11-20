@@ -1,0 +1,7 @@
+[[plugins]]
+package = "./plugins/site-version"
+
+[[headers]]
+for = "/site-version.json"
+  [headers.values]
+  Cache-Control = "no-store"
