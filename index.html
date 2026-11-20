@@ -632,6 +632,14 @@
                 }
             });
         });
+        let previousScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > previousScrollY) {
+                navDropdowns.forEach(dropdown => dropdown.removeAttribute('open'));
+            }
+            previousScrollY = currentScrollY;
+        }, { passive: true });
         nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
             toggle.setAttribute('aria-expanded', 'false');
             nav.classList.remove('is-open');
