@@ -19,32 +19,26 @@
     <meta name="twitter:image" content="https://impact508nutrition.com/assets/img/social-preview.jpg">
     <meta name="twitter:image:alt" content="Alexa and Cora with drinks at Impact 508 Nutrition">
     <script>
-        const navigationEntry = performance.getEntriesByType('navigation')[0];
-        if (navigationEntry?.type === 'reload') {
-            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-            window.addEventListener('pageshow', () => {
-                if (!window.location.hash) window.scrollTo(0, 0);
-            }, { once: true });
-        }
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.addEventListener('load', () => window.scrollTo(0, 0));
     </script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/cafe.css">
 </head>
-<body>
+<body id="page-top">
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="cafe-header">
         <div class="container cafe-nav">
             <a class="cafe-brand" href="index.html" aria-label="Impact 508 Nutrition home">
                 <span class="brand-mark" aria-hidden="true"><img src="assets/img/logo/impact508nutrition-logo.svg" alt=""></span>
-                <span><strong>Impact 508</strong><small>Nutrition Cafe</small></span>
             </a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
                 <span></span><span></span><span></span><span class="sr-only">Menu</span>
             </button>
             <nav id="primary-navigation" class="cafe-navigation" aria-label="Primary navigation">
-                <a href="#power-teas">All-Year Menu</a>
+                <a href="#all-year-menu">All-Year Menu</a>
                 <a href="#seasonal">Seasonal</a>
                 <details class="nav-dropdown">
                     <summary>Community</summary>
@@ -77,13 +71,18 @@
 
         <section class="coras-refresher-banner" aria-label="Cora's Refresher promotion">
             <div class="container banner-content">
-                <div class="banner-text">
-                    <p class="banner-eyebrow">🐶 New Flavor Alert 🐶</p>
-                    <h2>Cora's Refresher</h2>
-                    <p class="banner-description">Dragonfruit & Pineapple - Available Now!</p>
+                <div class="banner-feature">
+                    <div class="banner-text">
+                        <div class="banner-copy">
+                            <p class="banner-eyebrow">New Flavor Alert</p>
+                            <h2>Cora's Refresher</h2>
+                            <p class="banner-description">Dragonfruit & Pineapple - Available Now!</p>
+                        </div>
+                        <img class="banner-cora-image" src="assets/img/cora/cora-refresher-ai.jpg" alt="AI-generated image of Cora holding a red and orange tea" width="512" height="768">
+                    </div>
                 </div>
                 <div class="banner-ctas">
-                    <a href="#order-online" class="button button-primary">Order Now</a>
+                    <a href="#order-online" class="button button-primary" data-order-type="tea" data-order-drink="Cora's Refresher">Order Now</a>
                     <a href="#menu" class="button button-secondary">Learn More</a>
                 </div>
             </div>
@@ -93,7 +92,7 @@
             <div class="hero-overlay"></div>
             <div class="container hero-content">
                 <p class="eyebrow">Nourishment, community & good company</p>
-                <h1 id="hero-title">A healthy cafe where everyone can feel at home.</h1>
+                <h1 id="hero-title">A healthy cafe where everyone can feel at home</h1>
                 <p class="hero-copy">Enjoy thoughtfully made drinks and feel-good favorites in a cozy neighborhood space where you can get to know our lovely mascot, Cora.</p>
             </div>
         </section>
@@ -116,7 +115,7 @@
                     <a href="#shakes">Shakes</a>
                 </nav>
                 <aside class="menu-enhancements" aria-label="Menu enhancements">
-                    <div class="menu-enhancement">
+                    <div class="menu-enhancement" data-order-type="tea">
                         <h2>Take Your Tea To The Next Level</h2>
                         <ul>
                             <li>BCAAs</li>
@@ -129,7 +128,7 @@
                             <li>Probiotic</li>
                         </ul>
                     </div>
-                    <div class="menu-enhancement">
+                    <div class="menu-enhancement" data-order-type="shake">
                         <h2>Enhance Your Shake</h2>
                         <ul>
                             <li>Fiber Boost</li>
@@ -138,7 +137,7 @@
                         </ul>
                     </div>
                 </aside>
-                <div class="section-heading">
+                <div class="section-heading" id="all-year-menu">
                     <p class="eyebrow">Always available</p>
                     <h2>Our All-Year Menu</h2>
                     <p>Reliable favorites for an everyday boost, a nourishing breakfast, or a delicious afternoon pause.</p>
@@ -277,12 +276,13 @@
             <div class="container order-container">
                 <div class="section-heading">
                     <p class="eyebrow">Shakes $12 &middot; Teas and refreshers $10 &middot; Shake and mega tea $19</p>
-                    <h2 id="order-title">Order for pickup</h2>
+                    <h2 id="order-title" tabindex="-1">Order for pickup</h2>
                     <p>Choose your drinks and add them to your order. The combo price applies automatically for each shake and tea or refresher pair.</p>
                 </div>
                 <form class="order-form" id="online-order-form" novalidate>
                     <div class="order-layout">
                         <div class="order-picker">
+                            <p class="order-selection-status" id="order-selection-status" role="status" hidden></p>
                             <label for="order-type">Choose a drink type</label>
                             <select id="order-type" name="type">
                                 <option value="tea">Tea or refresher - $10</option>
@@ -459,10 +459,7 @@
         <section id="mascot" class="cafe-section mascot-section">
             <div class="container mascot-layout">
                 <div class="mascot-media">
-                    <video autoplay muted loop playsinline controls aria-label="Cora, the Impact 508 mascot">
-                        <source src="assets/video/cora-live.mp4" type="video/mp4">
-                        Your browser does not support embedded video.
-                    </video>
+                    <img class="mascot-image" src="assets/img/owner/cora-portrait.png" alt="Cora, the lovable mascot of Impact 508 Nutrition" loading="lazy" decoding="async">
                 </div>
                 <div class="mascot-copy">
                     <p class="eyebrow">Get to know the mascot</p>
@@ -569,11 +566,11 @@
     <footer class="cafe-footer">
         <div class="container footer-grid">
             <div>
-                <a class="cafe-brand footer-brand" href="index.html"><span class="brand-mark" aria-hidden="true"><img src="assets/img/logo/impact508nutrition-logo.svg" alt=""></span><span><strong>Impact 508</strong><small>Nutrition Cafe</small></span></a>
+                <a class="cafe-brand footer-brand" href="#page-top" aria-label="Impact 508 Nutrition home"><span class="brand-mark" aria-hidden="true"><img src="assets/img/logo/impact508nutrition-logo.svg" alt=""></span></a>
                 <p>Healthy choices. Community spirit. A place for every pup.</p>
             </div>
             <nav aria-label="Footer navigation">
-                <a href="#power-teas">All-Year Menu</a><a href="#seasonal">Seasonal Drinks</a><a href="#favorites">Favorites</a><a href="#order-online">Order Online</a><a href="#alexa">Meet Alexa</a><a href="#community">Community Moments</a><a href="#mascot">Meet Cora</a><a href="#story">About</a>
+                <a href="#all-year-menu">All-Year Menu</a><a href="#seasonal">Seasonal Drinks</a><a href="#favorites">Favorites</a><a href="#order-online">Order Online</a><a href="#alexa">Meet Alexa</a><a href="#community">Community Moments</a><a href="#mascot">Meet Cora</a><a href="#story">About</a>
             </nav>
             <nav class="footer-social" aria-label="Social media">
                 <strong>Follow us</strong>
@@ -626,6 +623,7 @@
         const orderDrink = document.getElementById('order-drink');
         const orderShake = document.getElementById('order-shake');
         const orderQuantity = document.getElementById('order-quantity');
+        const orderSelectionStatus = document.getElementById('order-selection-status');
         const orderCart = document.getElementById('order-cart');
         const orderStatus = document.getElementById('order-status');
         const orderDiscount = document.getElementById('order-discount');
@@ -663,16 +661,17 @@
         function renderOrderCart() {
             orderCart.replaceChildren();
             const totals = getOrderTotals();
-            orderItems.forEach(({ type, drink, quantity }, key) => {
+            orderItems.forEach(({ type, drink, quantity, enhancements }, key) => {
                 const item = document.createElement('li');
                 item.className = 'order-cart-item';
                 const description = document.createElement('span');
-                description.textContent = `${drink} (${type}) - ${quantity} x ${formatPrice(drinkPrices[type])}`;
+                const enhancementText = enhancements.length ? `; ${enhancements.join(', ')}` : '';
+                description.textContent = `${drink} (${type}${enhancementText}) - ${quantity} x ${formatPrice(drinkPrices[type])}`;
                 const removeButton = document.createElement('button');
                 removeButton.className = 'order-remove-button';
                 removeButton.type = 'button';
                 removeButton.textContent = 'Remove';
-                removeButton.setAttribute('aria-label', `Remove ${drink} from your order`);
+                removeButton.setAttribute('aria-label', `Remove ${drink}${enhancementText} from your order`);
                 removeButton.addEventListener('click', () => {
                     orderItems.delete(key);
                     renderOrderCart();
@@ -699,12 +698,152 @@
             orderShake.disabled = isTea;
         });
 
+        function clearOrderSelection() {
+            orderSelectionStatus.hidden = true;
+            orderSelectionStatus.textContent = '';
+            orderDrink.classList.remove('is-prefilled');
+            orderShake.classList.remove('is-prefilled');
+        }
+
+        orderType.addEventListener('change', clearOrderSelection);
+        orderDrink.addEventListener('change', clearOrderSelection);
+        orderShake.addEventListener('change', clearOrderSelection);
+
+        function orderLinkUrl(type, name, enhancement = false) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('order-type', type);
+            url.searchParams.delete('order-drink');
+            url.searchParams.delete('order-enhancement');
+            url.searchParams.set(enhancement ? 'order-enhancement' : 'order-drink', name);
+            url.hash = 'order-online';
+            return url.href;
+        }
+
+        function makeOrderLink(type, name, enhancement = false) {
+            const link = document.createElement('a');
+            link.className = 'menu-order-link';
+            link.href = orderLinkUrl(type, name, enhancement);
+            link.dataset.orderType = type;
+            link.dataset[enhancement ? 'orderEnhancement' : 'orderDrink'] = name;
+            link.textContent = name;
+            link.setAttribute('aria-label', enhancement ? `Select ${name} enhancement for ${type}` : `Order ${name}`);
+            return link;
+        }
+
+        document.querySelectorAll('.menu-enhancement[data-order-type]').forEach(group => {
+            const type = group.dataset.orderType;
+            const field = type === 'tea' ? orderTeaField : orderShakeField;
+            const fieldset = document.createElement('fieldset');
+            fieldset.className = 'order-enhancements';
+            const legend = document.createElement('legend');
+            legend.textContent = `Free ${type} enhancements (optional)`;
+            fieldset.append(legend);
+
+            group.querySelectorAll('li').forEach(item => {
+                const name = item.textContent.trim();
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = name;
+                checkbox.addEventListener('change', clearOrderSelection);
+                label.append(checkbox, document.createTextNode(name));
+                fieldset.append(label);
+                item.replaceChildren(makeOrderLink(type, name, true));
+            });
+            field.append(fieldset);
+        });
+
+        const menuItems = [
+            ['.power-tea-card h3, .favorite-grid h3', 'tea'],
+            ['.shake-card li', 'shake'],
+            ['.holiday-menu > div:first-child li strong', 'shake'],
+            ['.holiday-menu > div:last-child li strong', 'tea'],
+            ['.menu-card h3', null]
+        ];
+        menuItems.forEach(([selector, preferredType]) => {
+            document.querySelectorAll(selector).forEach(item => {
+                const text = item.textContent.trim();
+                const name = text.endsWith(':') ? text.slice(0, -1) : text;
+                const hasOption = select => [...select.options].some(option => option.value === name && !option.disabled);
+                const type = preferredType || (hasOption(orderDrink) ? 'tea' : 'shake');
+                const select = type === 'tea' ? orderDrink : orderShake;
+                if (!hasOption(select)) {
+                    console.error(`Menu item "${name}" is missing from pickup ordering.`);
+                    return;
+                }
+                item.replaceChildren(makeOrderLink(type, name));
+                if (text.endsWith(':')) item.append(':');
+            });
+        });
+
+        function selectOrderItem(type, drink, enhancement) {
+            if ((type !== 'tea' && type !== 'shake') || Boolean(drink) === Boolean(enhancement)) {
+                orderStatus.textContent = 'This order link is invalid. Please choose a drink below.';
+                return;
+            }
+            orderType.value = type;
+            orderType.dispatchEvent(new Event('change'));
+            const field = type === 'tea' ? orderTeaField : orderShakeField;
+            const select = type === 'tea' ? orderDrink : orderShake;
+            if (enhancement) {
+                select.selectedIndex = 0;
+                const checkbox = [...field.querySelectorAll('.order-enhancements input')]
+                    .find(input => input.value === enhancement);
+                if (!checkbox) {
+                    orderStatus.textContent = 'This enhancement is unavailable. Please contact the cafe.';
+                    return;
+                }
+                checkbox.checked = true;
+                orderSelectionStatus.textContent = `${checkbox.value} selected. Choose a ${type === 'tea' ? 'tea or refresher' : 'shake or protein coffee'}, then add it to your order.`;
+            } else {
+                select.value = drink;
+                if (!select.value) {
+                    orderStatus.textContent = 'This drink is unavailable. Please contact the cafe.';
+                    return;
+                }
+                select.classList.add('is-prefilled');
+                orderSelectionStatus.textContent = `${select.value} selected. Choose any enhancements, then add it to your order.`;
+            }
+            orderSelectionStatus.hidden = false;
+            renderOrderCart();
+        }
+
+        document.querySelectorAll('.coras-refresher-banner a[data-order-drink]').forEach(link => {
+            link.href = orderLinkUrl(link.dataset.orderType, link.dataset.orderDrink);
+        });
+
+        function selectOrderFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('order-type') || params.has('order-drink') || params.has('order-enhancement')) {
+                selectOrderItem(params.get('order-type'), params.get('order-drink'), params.get('order-enhancement'));
+            } else {
+                clearOrderSelection();
+            }
+        }
+        selectOrderFromUrl();
+        window.addEventListener('popstate', selectOrderFromUrl);
+
+        document.querySelector('main').addEventListener('click', event => {
+            const link = event.target.closest('a[data-order-type]');
+            if (!link || event.defaultPrevented || event.button !== 0 ||
+                event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+            event.preventDefault();
+            selectOrderItem(link.dataset.orderType, link.dataset.orderDrink, link.dataset.orderEnhancement);
+            history.pushState(null, '', link.href);
+            document.getElementById('order-title').focus({ preventScroll: true });
+            document.getElementById('order-online').scrollIntoView({ block: 'start' });
+        });
+
         document.getElementById('add-order-item').addEventListener('click', () => {
             const type = orderType.value;
             const selectedDrink = type === 'tea' ? orderDrink : orderShake;
             const drink = selectedDrink.value;
             const quantity = Number(orderQuantity.value);
-            const key = JSON.stringify([type, drink]);
+            const field = type === 'tea' ? orderTeaField : orderShakeField;
+            const enhancements = [...field.querySelectorAll('.order-enhancements input:checked')]
+                .map(input => input.value).sort();
+            const key = JSON.stringify([type, drink, enhancements]);
             const currentQuantity = orderItems.get(key)?.quantity || 0;
             const nextQuantity = currentQuantity + quantity;
             const nextTotalQuantity = getOrderTotals().totalQuantity + quantity;
@@ -719,7 +858,7 @@
                 return;
             }
 
-            orderItems.set(key, { type, drink, quantity: nextQuantity });
+            orderItems.set(key, { type, drink, quantity: nextQuantity, enhancements });
             renderOrderCart();
         });
 
@@ -734,9 +873,10 @@
             if (!validateTextFields([orderForm.elements['customer-name'], orderForm.elements['customer-phone']])) return;
             const customerName = orderForm.elements['customer-name'].value.trim();
             const customerPhone = orderForm.elements['customer-phone'].value.trim();
-            const itemLines = [...orderItems.values()].map(({ type, drink, quantity }) =>
-                `${quantity} x ${drink} (${type}) - ${formatPrice(quantity * drinkPrices[type])}`
-            );
+            const itemLines = [...orderItems.values()].map(({ type, drink, quantity, enhancements }) => {
+                const enhancementText = enhancements.length ? `; ${enhancements.join(', ')}` : '';
+                return `${quantity} x ${drink} (${type}${enhancementText}) - ${formatPrice(quantity * drinkPrices[type])}`;
+            });
             const totals = getOrderTotals();
             const comboLine = totals.comboQuantity
                 ? `\nShake and mega tea combo savings (${totals.comboQuantity}): -${formatPrice(totals.discountCents)}`
