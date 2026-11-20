@@ -619,6 +619,15 @@
             toggle.setAttribute('aria-expanded', String(!open));
             nav.classList.toggle('is-open', !open);
         });
+        nav.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+            let hideTimer;
+            dropdown.addEventListener('toggle', () => {
+                window.clearTimeout(hideTimer);
+                if (dropdown.open) {
+                    hideTimer = window.setTimeout(() => dropdown.removeAttribute('open'), 6000);
+                }
+            });
+        });
         nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
             toggle.setAttribute('aria-expanded', 'false');
             nav.classList.remove('is-open');
