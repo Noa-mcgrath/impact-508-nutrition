@@ -56,7 +56,7 @@
                 <details class="nav-dropdown">
                     <summary>Meet The Owners</summary>
                     <div class="nav-dropdown-menu">
-                        <a href="#owner">Meet Alexa</a>
+                        <a href="#alexa">Meet Alexa</a>
                         <a href="#mascot">Meet Cora</a>
                     </div>
                 </details>
@@ -74,6 +74,21 @@
                 <a class="button quick-action-secondary" href="#order-online">Order Pickup</a>
             </div>
         </nav>
+
+        <section class="coras-refresher-banner" aria-label="Cora's Refresher promotion">
+            <div class="container banner-content">
+                <div class="banner-text">
+                    <p class="banner-eyebrow">🌴 New Flavor Alert 🌴</p>
+                    <h2>Cora's Refresher</h2>
+                    <p class="banner-description">Dragonfruit & Pineapple - Available Now!</p>
+                </div>
+                <div class="banner-ctas">
+                    <a href="#order-online" class="button button-primary">Order Now</a>
+                    <a href="#menu" class="button button-secondary">Learn More</a>
+                </div>
+            </div>
+        </section>
+
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
@@ -262,7 +277,7 @@
                     <h2 id="order-title">Order for pickup</h2>
                     <p>Choose your drinks and add them to your order. The combo price applies automatically for each shake and tea or refresher pair.</p>
                 </div>
-                <form class="order-form" id="online-order-form">
+                <form class="order-form" id="online-order-form" novalidate>
                     <div class="order-layout">
                         <div class="order-picker">
                             <label for="order-type">Choose a drink type</label>
@@ -274,6 +289,9 @@
                             <label for="order-drink">Choose a tea or refresher</label>
                             <select id="order-drink" name="drink" required>
                                 <option value="" selected disabled>Select a tea or refresher</option>
+                                <optgroup label="Refreshers">
+                                    <option>Cora's Refresher</option>
+                                </optgroup>
                                 <optgroup label="All-Year Power Teas">
                                     <option>Fruit Gummy</option>
                                     <option>Electric Lemonade</option>
@@ -382,15 +400,15 @@
                 </div>
                 <div class="community-gallery">
                     <article class="community-card">
-                        <img class="community-photo" src="assets/img/community/cafe-moment.jpeg" alt="Cafe moment at Impact 508 Nutrition">
+                        <img class="community-photo" src="assets/img/community/cafe-moment.jpeg" alt="Cafe moment at Impact 508 Nutrition" loading="lazy" decoding="async">
                         <h3>Cafe moments</h3>
                     </article>
                     <article class="community-card">
-                        <img class="community-photo" src="assets/img/community/neighbors-friends.jpeg" alt="Neighbors and friends at Impact 508 Nutrition">
+                        <img class="community-photo" src="assets/img/community/neighbors-friends.jpeg" alt="Neighbors and friends at Impact 508 Nutrition" loading="lazy" decoding="async">
                         <h3>Neighbors & friends</h3>
                     </article>
                     <article class="community-card">
-                        <img class="community-photo" src="assets/img/community/four-legged-guests.png" alt="Community artwork created for Impact 508 Nutrition">
+                        <img class="community-photo" src="assets/img/community/four-legged-guests.png" alt="Community artwork created for Impact 508 Nutrition" loading="lazy" decoding="async">
                         <h3>Community Artwork</h3>
                     </article>
                 </div>
@@ -410,15 +428,15 @@
                 </div>
                 <div class="owner-gallery" aria-label="Photos of Alexa and Cora">
                     <figure class="owner-photo-card">
-                        <img class="owner-live-photo" src="assets/img/owner/alexa-portrait.jpg" alt="Alexa smiling">
+                        <img class="owner-live-photo" src="assets/img/owner/alexa-portrait.jpg" alt="Alexa smiling" loading="lazy" decoding="async">
                         <figcaption>Alexa</figcaption>
                     </figure>
                     <figure class="owner-photo-card">
-                        <img class="owner-live-photo" src="assets/img/owner/cora-portrait.png" alt="Cora smiling in a close-up portrait">
+                        <img class="owner-live-photo" src="assets/img/owner/cora-portrait.png" alt="Cora smiling in a close-up portrait" loading="lazy" decoding="async">
                         <figcaption>Cora</figcaption>
                     </figure>
                     <figure class="owner-photo-card">
-                        <img class="owner-live-photo" src="assets/img/owner/alexa-and-cora.png" alt="Alexa and Cora together">
+                        <img class="owner-live-photo" src="assets/img/owner/alexa-and-cora.png" alt="Alexa and Cora together" loading="lazy" decoding="async">
                         <figcaption>Alexa & Cora</figcaption>
                     </figure>
                 </div>
@@ -461,15 +479,15 @@
                 </div>
                 <div class="cora-gallery">
                     <figure>
-                        <img src="assets/img/cora/cora-cafe-replacement.jpg" alt="Cora at the cafe">
+                        <img src="assets/img/cora/cora-cafe-replacement.jpg" alt="Cora at the cafe" loading="lazy" decoding="async">
                         <figcaption>Cora at the cafe</figcaption>
                     </figure>
                     <figure>
-                        <img src="assets/img/cora/cora-moment.jpg" alt="Cora sitting by the cafe window">
+                        <img src="assets/img/cora/cora-moment.jpg" alt="Cora sitting by the cafe window" loading="lazy" decoding="async">
                         <figcaption>A Cora moment</figcaption>
                     </figure>
                     <figure>
-                        <img src="assets/img/cora/cora-says-hello-6240.jpg" alt="Cora sitting in the cafe">
+                        <img src="assets/img/cora/cora-says-hello-6240.jpg" alt="Cora sitting in the cafe" loading="lazy" decoding="async">
                         <figcaption>Cora says hello</figcaption>
                     </figure>
                 </div>
@@ -486,8 +504,8 @@
                     <a class="button button-primary" href="https://maps.google.com/?q=198+Park+Ave,+Worcester,+Massachusetts+01609" target="_blank" rel="noopener noreferrer">Meet us here</a>
                 </div>
                 <div class="story-images" aria-label="Cozy cafe and community space">
-                    <img src="assets/img/story/tea-benefits.jpg" alt="Benefits of our tea infographic featuring a colorful tea drink">
-                    <img src="assets/img/story/cafe-owner-and-dog.jpg" alt="A woman enjoying a drink while holding a dog at the cafe">
+                    <img src="assets/img/story/tea-benefits.jpg" alt="Benefits of our tea infographic featuring a colorful tea drink" loading="lazy" decoding="async">
+                    <img src="assets/img/story/cafe-owner-and-dog.jpg" alt="A woman enjoying a drink while holding a dog at the cafe" loading="lazy" decoding="async">
                 </div>
             </div>
         </section>
@@ -571,9 +589,24 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        const requiredTextFields = document.querySelectorAll(
+            '#feedback-form input, #feedback-form textarea, .order-customer input'
+        );
+        requiredTextFields.forEach(field => field.addEventListener('input', () => field.setCustomValidity('')));
+
+        function validateTextFields(fields) {
+            for (const field of fields) {
+                field.setCustomValidity(field.value.trim() ? '' : 'Please fill out this field.');
+                if (!field.reportValidity()) return false;
+            }
+            return true;
+        }
+
         document.getElementById('feedback-form').addEventListener('submit', event => {
             event.preventDefault();
             const form = event.currentTarget;
+            if (!validateTextFields([form.elements['favorite-drink'], form.elements['visit-experience']])) return;
             const favoriteDrink = form.elements['favorite-drink'].value.trim();
             const visitExperience = form.elements['visit-experience'].value.trim();
             const subject = encodeURIComponent('Impact 508 website feedback');
@@ -695,6 +728,7 @@
                 return;
             }
 
+            if (!validateTextFields([orderForm.elements['customer-name'], orderForm.elements['customer-phone']])) return;
             const customerName = orderForm.elements['customer-name'].value.trim();
             const customerPhone = orderForm.elements['customer-phone'].value.trim();
             const itemLines = [...orderItems.values()].map(({ type, drink, quantity }) =>
@@ -710,7 +744,6 @@
                 `${comboLine}\n\nSubtotal: ${formatPrice(totals.subtotalCents)}\nPayment: At pickup`
             );
             orderEmailDraftUrl = `mailto:Impact508nutrition@gmail.com?subject=${subject}&body=${body}`;
-            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             orderThankYouDialog.showModal();
         });
 
