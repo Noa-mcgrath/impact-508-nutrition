@@ -366,7 +366,8 @@
                             <ul class="order-cart" id="order-cart" aria-label="Drinks in your order"></ul>
                             <p class="order-status" id="order-status" aria-live="polite">Your order is empty.</p>
                             <p class="order-discount" id="order-discount" hidden></p>
-                            <p class="order-subtotal"><strong>Subtotal</strong><output id="order-subtotal">$0.00</output></p>
+                            <p class="order-subtotal"><strong>Drink subtotal</strong><output id="order-subtotal">$0.00</output></p>
+                            <p class="order-add-in-note">Add-ins cost extra and are not included in this subtotal. Prices vary; your final total will be provided at the cafe.</p>
                         </div>
                     </div>
                     <div class="order-customer">
@@ -667,7 +668,7 @@
                 item.className = 'order-cart-item';
                 const description = document.createElement('span');
                 const enhancementText = enhancements.length ? `; ${enhancements.join(', ')}` : '';
-                description.textContent = `${drink} (${type}${enhancementText}) - ${quantity} x ${formatPrice(drinkPrices[type])}`;
+                description.textContent = `${drink} (${type}${enhancementText}) - ${quantity} x ${formatPrice(drinkPrices[type])} base price`;
                 const removeButton = document.createElement('button');
                 removeButton.className = 'order-remove-button';
                 removeButton.type = 'button';
@@ -737,8 +738,15 @@
             const fieldset = document.createElement('fieldset');
             fieldset.className = 'order-enhancements';
             const legend = document.createElement('legend');
-            legend.textContent = `Free ${type} enhancements (optional)`;
+            legend.textContent = `${type === 'tea' ? 'Tea' : 'Shake'} add-ins (optional)`;
             fieldset.append(legend);
+
+            const pricingNote = document.createElement('p');
+            pricingNote.id = `order-${type}-add-in-pricing`;
+            pricingNote.className = 'order-add-in-note';
+            pricingNote.textContent = 'Add-ins cost extra and prices vary. Your final total will be provided at the cafe.';
+            fieldset.setAttribute('aria-describedby', pricingNote.id);
+            fieldset.append(pricingNote);
 
             group.querySelectorAll('li').forEach(item => {
                 const name = item.textContent.trim();
@@ -872,7 +880,7 @@
             const customerPhone = orderForm.elements['customer-phone'].value.trim();
             const itemLines = [...orderItems.values()].map(({ type, drink, quantity, enhancements }) => {
                 const enhancementText = enhancements.length ? `; ${enhancements.join(', ')}` : '';
-                return `${quantity} x ${drink} (${type}${enhancementText}) - ${formatPrice(quantity * drinkPrices[type])}`;
+                return `${quantity} x ${drink} (${type}${enhancementText}) - ${formatPrice(quantity * drinkPrices[type])} base price`;
             });
             const totals = getOrderTotals();
             const comboLine = totals.comboQuantity
@@ -881,7 +889,8 @@
             const subject = encodeURIComponent('Impact 508 pickup order request');
             const body = encodeURIComponent(
                 `Name: ${customerName}\nPhone: ${customerPhone}\n\nOrder:\n${itemLines.join('\n')}` +
-                `${comboLine}\n\nSubtotal: ${formatPrice(totals.subtotalCents)}\nPayment: At pickup`
+                `${comboLine}\n\nDrink subtotal (excludes add-ins): ${formatPrice(totals.subtotalCents)}` +
+                '\nAdd-in prices vary and cost extra. Final total will be provided at the cafe.\nPayment: At pickup'
             );
             orderEmailDraftUrl = `mailto:Impact508nutrition@gmail.com?subject=${subject}&body=${body}`;
             orderThankYouDialog.showModal();
