@@ -60,7 +60,6 @@
                     </div>
                 </details>
                 <a href="#order-online">Order Online</a>
-                <a class="nav-visit" href="#visit">Location</a>
             </nav>
         </div>
     </header>
@@ -69,7 +68,7 @@
         <nav class="quick-actions" aria-label="Quick actions">
             <div class="container quick-actions-grid">
                 <a class="button button-primary" href="#menu">Explore the menu</a>
-                <a class="button quick-action-secondary" href="#visit">Hours &amp; Directions</a>
+                <a id="location-nav" class="nav-visit button quick-action-secondary" href="#footer">Location</a>
                 <a class="button quick-action-secondary" href="#order-online">Order Pickup</a>
             </div>
         </nav>
@@ -565,7 +564,7 @@
         </section>
     </main>
 
-    <footer class="cafe-footer">
+    <footer class="cafe-footer" id="footer">
         <div class="container footer-grid">
             <div>
                 <a class="cafe-brand footer-brand" href="#page-top" aria-label="Impact 508 Nutrition home"><span class="brand-mark" aria-hidden="true"><img src="assets/img/logo/impact508nutrition-logo.svg" alt=""></span></a>
@@ -591,6 +590,18 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Update Location nav link based on screen size
+        function updateLocationLink() {
+            const locationLink = document.getElementById('location-nav');
+            if (window.innerWidth < 768) {
+                locationLink.href = '#visit'; // Mobile: go to Visit section
+            } else {
+                locationLink.href = '#footer'; // Desktop: go to footer
+            }
+        }
+        updateLocationLink();
+        window.addEventListener('resize', updateLocationLink);
 
         const requiredTextFields = document.querySelectorAll(
             '#feedback-form input, #feedback-form textarea, .order-customer input'
