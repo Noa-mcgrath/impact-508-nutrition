@@ -20,7 +20,12 @@
     <meta name="twitter:image:alt" content="Alexa and Cora with drinks at Impact 508 Nutrition">
     <script>
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-        window.addEventListener('load', () => window.scrollTo(0, 0));
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            if (window.location.hash) {
+                history.replaceState(null, '', window.location.pathname);
+            }
+        });
     </script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
