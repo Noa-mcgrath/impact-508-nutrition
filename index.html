@@ -55,7 +55,7 @@
                     </div>
                 </details>
                 <a href="#order-online">Order Online</a>
-                <a class="nav-visit" href="#visit">Visit Us</a>
+                <a class="nav-visit" href="#page-bottom">Location</a>
             </nav>
         </div>
     </header>
@@ -80,10 +80,6 @@
                         </div>
                         <img class="banner-cora-image" src="assets/img/cora/cora-refresher-ai.jpg" alt="AI-generated image of Cora holding a red and orange tea" width="512" height="768">
                     </div>
-                </div>
-                <div class="banner-ctas">
-                    <a href="#order-online" class="button button-primary" data-order-type="tea" data-order-drink="Cora's Refresher">Order Now</a>
-                    <a href="#menu" class="button button-secondary">Learn More</a>
                 </div>
             </div>
         </section>
@@ -579,7 +575,7 @@
                 <a href="https://www.tiktok.com/@impact508nutrition" target="_blank" rel="noopener noreferrer">TikTok</a>
             </nav>
         </div>
-        <div class="container footer-bottom">
+        <div id="page-bottom" class="container footer-bottom">
             <p>&copy; <span id="year">2026</span> Impact 508 Nutrition. All rights reserved.</p>
             <p>A unique cafe experience where you can spend time with our mascot, Cora.</p>
         </div>
@@ -807,10 +803,6 @@
             orderSelectionStatus.hidden = false;
             renderOrderCart();
         }
-
-        document.querySelectorAll('.coras-refresher-banner a[data-order-drink]').forEach(link => {
-            link.href = orderLinkUrl(link.dataset.orderType, link.dataset.orderDrink);
-        });
 
         function selectOrderFromUrl() {
             const params = new URLSearchParams(window.location.search);
