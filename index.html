@@ -22,13 +22,11 @@
     <script>
         if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
         window.addEventListener('load', () => {
-            window.scrollTo(0, 0);
-            if (window.location.hash) {
-                history.replaceState(null, '', window.location.pathname);
-            }
+            if (!window.location.hash) window.scrollTo(0, 0);
         });
     </script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/cafe.css">
@@ -36,6 +34,7 @@
 </head>
 <body id="page-top">
     <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="back-to-top" href="#page-top" aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     <aside class="site-update" id="site-update" aria-label="Website update" hidden>
         <p role="status">A new version of the website is available. Refreshing will clear any unsent order or feedback.</p>
         <div class="site-update-actions">
