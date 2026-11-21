@@ -1,3 +1,4 @@
+# Publish a new site version with each Netlify deployment.
 [[plugins]]
 package = "./plugins/site-version"
 
