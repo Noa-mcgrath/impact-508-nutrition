@@ -1,4 +1,5 @@
 # Publish a new site version with each Netlify deployment.
+# Open pages check the published version every minute.
 [[plugins]]
 package = "./plugins/site-version"
 
